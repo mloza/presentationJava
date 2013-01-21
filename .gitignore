@@ -1,6 +1,8 @@
+.classpath
+.project
+.settings
 *.class
 
-# Package Files #
-*.jar
+# Package Files except JAR libs #
 *.war
 *.ear
