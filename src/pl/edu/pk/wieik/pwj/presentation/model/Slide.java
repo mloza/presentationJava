@@ -19,6 +19,7 @@ public class Slide extends Model<Slide> implements ModelInt {
     Integer duration;
     Integer position;
     SlideType type;
+    SlideExtend extend;
 
     public Integer getId() {
         return id;
@@ -60,10 +61,21 @@ public class Slide extends Model<Slide> implements ModelInt {
 
     public Slide get(Integer id) {
         try {
-            ps("SELECT * FROM `slide` WHERE id = ? LIMIT 1").set(id).execute();
+            ps("SELECT s.id, s.duration, s.position, s.type, h.id as `h:id`, h.description as `h:description`, h.content as `h:content`, i.id as `i:id`, i.description as `i:description`, i.width as `i:width`, i.height as `i:height`, i.path as `i:path`, v.id as `v:id`, v.name as `v:name`, v.description as `v:description`, v.fps as `v:fps`, v.format as `v:format`, v.path as `v:path`  FROM `slide` WHERE id = ? LIMIT 1").set(id).execute();
             res.next();
 
             load(res);
+
+            if(this.type == SlideType.HTML) {
+                this.extend = new HtmlSlide();
+            } else if(this.type == SlideType.IMAGE) {
+                this.extend = new ImageSlide();
+            } else if(this.type == SlideType.VIDEO) {
+                this.extend = new VideoSlide();
+            }
+
+            this.extend.load(res);
+
             return this;
 
         } catch (SQLException e) {
@@ -75,7 +87,7 @@ public class Slide extends Model<Slide> implements ModelInt {
     public List<Slide> getAll(Integer id) {
         List<Slide> list = new ArrayList<Slide>();
         try {
-            for(Slide i: (Slide)ps("SELECT * FROM `slide` WHERE presentation_id = ?").set(id).execute()) {
+            for(Slide i: (Slide)ps("SELECT s.id, s.duration, s.position, s.type, h.id as `h:id`, h.description as `h:description`, h.content as `h:content`, i.id as `i:id`, i.description as `i:description`, i.width as `i:width`, i.height as `i:height`, i.path as `i:path`, v.id as `v:id`, v.name as `v:name`, v.description as `v:description`, v.fps as `v:fps`, v.format as `v:format`, v.path as `v:path` FROM `slide` as s LEFT JOIN htmlSlide h on s.id = h.slide_id LEFT JOIN imageSlide i on s.id = i.slide_id LEFT JOIN videoSlide v on s.id = v.slide_id WHERE presentation_id = ?").set(id).execute()) {
                 list.add(i);
             }
             return list;
@@ -87,6 +99,21 @@ public class Slide extends Model<Slide> implements ModelInt {
 
     @Override
     public Slide load(ResultSet res) throws SQLException {
+        this.id = res.getInt("id");
+        this.duration = res.getInt("duration");
+        this.position = res.getInt("position");
+        this.type = SlideType.getByNumber(res.getInt("type"));
+
+        if(this.type == SlideType.HTML) {
+            this.extend = new HtmlSlide();
+        } else if(this.type == SlideType.IMAGE) {
+            this.extend = new ImageSlide();
+        } else if(this.type == SlideType.VIDEO) {
+            this.extend = new VideoSlide();
+        }
+
+        this.extend.load(res);
+
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
