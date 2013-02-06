@@ -49,6 +49,7 @@ public class LoginController extends HttpServlet {
 		}
 		
 		if(loggedIn) {
+			
 			response.sendRedirect("/presentation/adminpane");
 			return;
 		} else {
