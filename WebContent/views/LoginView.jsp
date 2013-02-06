@@ -56,7 +56,7 @@
                 </p>
                 <p class="inline-small-label">
                     <label for="pass"><span class="big">Password</span></label>
-                    <input type="password" name="pass" id="pass" class="full-width" value="">
+                    <input type="password" name="password" id="pass" class="full-width" value="">
                 </p>
                 
                 <button type="submit" class="float-right">Login</button>
