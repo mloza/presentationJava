@@ -78,7 +78,6 @@ public class Slide extends Model<Slide> implements ModelInt {
             for(Slide i: (Slide)ps("SELECT * FROM `slide` WHERE presentation_id = ?").set(id).execute()) {
                 list.add(i);
             }
-
             return list;
         } catch (SQLException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
