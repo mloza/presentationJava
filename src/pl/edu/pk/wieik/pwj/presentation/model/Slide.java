@@ -116,4 +116,15 @@ public class Slide extends Model<Slide> implements ModelInt {
 
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
+    
+//    public void save(){
+//    	try{
+//    	
+//    		ps("INSERT INTO slide(duration, position, type) values (?,?,?)").set(this.getDuration()).set(this.getPosition()).set(this.getType().toString()).update();
+//    		
+//    		}
+//    	catch(SQLException e){
+//    		  e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//    	}
+//    }
 }

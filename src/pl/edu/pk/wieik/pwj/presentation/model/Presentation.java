@@ -71,15 +71,39 @@ public class Presentation extends Model<Presentation> implements ModelInt {
         slides = Slide.factory().getAll(this.id);
         return slides;
     }
-    //artix
+    
+    //artx - zapisanie calej prezentacji ze slajdami (cos mi insert nie dizala 
     public void save(){
-    	try{
-    		//INSERT INTO presentation values (2,'prezentacja2')
-    		ps("INSERT INTO presentation(name) values (?) ").set(name).execute();
-    		
+//    	try{
+//    		//INSERT INTO presentation values (2,'prezentacja2')
+//    		ps("INSERT INTO presentation(name) values (?) ").set(name).update();
+//    		
+//    		}
+//    	catch(SQLException e){
+//    		  e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//    	}
+    	
+    	try {
+    		ps("INSERT INTO presentation(name) values (?) ").set(name).update();
+    		for(Slide slide : slides){
+    			if(slide.getType() == SlideType.HTML)
+    			{
+    				ps("INSERT INTO slide (presentation_id, duration, position, type) values (?, ?, ?, ?) ").set(this.getId()).set(slide.getDuration()).set(slide.getPosition()).set(slide.getType().ordinal()).update();
+    				
+    				//ps("INSERT INTO slide(position) values (?) ").set(slide.getDuration()).update();
+
+	    			}
+	    			else if(slide.getType() == SlideType.IMAGE){
+    				
+    			}
+    			else if(slide.getType() == SlideType.VIDEO){
+    				
+    			}
     		}
-    	catch(SQLException e){
-    		  e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+    		
     	}
+    	catch(SQLException e){
+    	  e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+    }
     }
 }
