@@ -2,6 +2,7 @@
 .project
 .settings
 *.class
+/nbproject/
 
 # Package Files except JAR libs #
 *.war
