@@ -2,8 +2,11 @@
 .project
 .settings
 *.class
-nbproject/
+nbproject
 build/
+
+*.iml
+.idea
 
 
 # Package Files except JAR libs #
