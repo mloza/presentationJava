@@ -14,9 +14,9 @@ public class JDBCUtil {
         	dataSource.setUseUnicode(true);
         	dataSource.setEncoding("UTF-8");
         	dataSource.setServerName("149.156.138.53");
-        	dataSource.setDatabaseName("virtualMountains");
-        	dataSource.setUser("virtualMountains");
-        	dataSource.setPassword("ip-project-secret");
+        	dataSource.setDatabaseName("prezentacje");
+        	dataSource.setUser("prezentacje");
+        	dataSource.setPassword("prezentacjeSecret");
         } catch (Throwable ex) {
             System.err.println("Initial DataSource creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
