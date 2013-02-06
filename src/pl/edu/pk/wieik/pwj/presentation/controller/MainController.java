@@ -25,6 +25,13 @@ public class MainController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Presentation p = Presentation.factory().get(1);
+        
+        Presentation p2 = Presentation.factory();
+        p2.setId(2);
+        p2.setName("prezentacja2");
+        p2.save();
+        
+        
 
         //p.getSlides();
 

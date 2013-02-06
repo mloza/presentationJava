@@ -71,4 +71,15 @@ public class Presentation extends Model<Presentation> implements ModelInt {
         slides = Slide.factory().getAll(this.id);
         return slides;
     }
+    //artix
+    public void save(){
+    	try{
+    		//INSERT INTO presentation values (2,'prezentacja2')
+    		ps("INSERT INTO presentation(name) values (?) ").set(name).execute();
+    		
+    		}
+    	catch(SQLException e){
+    		  e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+    	}
+    }
 }
