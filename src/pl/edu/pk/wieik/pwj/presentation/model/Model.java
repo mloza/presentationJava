@@ -48,6 +48,11 @@ public class Model<T extends ModelInt> implements Iterable<T>, Iterator<T> {
         return this;
     }
 
+    protected Model update() throws SQLException {
+        ps.executeUpdate();
+        return this;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return this;
