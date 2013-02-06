@@ -24,13 +24,13 @@ public class MainController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //Presentation p = Presentation.factory().get(1);
+        Presentation p = Presentation.factory().get(1);
 
         //p.getSlides();
 
-        //request.setAttribute("p", p);
+        request.setAttribute("p", p);
 
-        List<Slide> s = Slide.factory().getAll(1);
+        //List<Slide> s = Slide.factory().getAll(1);
 
         request.getRequestDispatcher("views/main/index.jsp").forward(request, response);
     }

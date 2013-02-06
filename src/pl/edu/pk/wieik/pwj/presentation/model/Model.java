@@ -66,7 +66,6 @@ public class Model<T extends ModelInt> implements Iterable<T>, Iterator<T> {
     public T next() {
         try {
             T p = (T)Class.forName(className).newInstance();
-            res.next();
             p.load(res);
             return p;
         } catch (Exception e) {
