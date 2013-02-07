@@ -8,5 +8,19 @@ package pl.edu.pk.wieik.pwj.presentation.model;
  * To change this template use File | Settings | File Templates.
  */
 public enum SlideType {
+    VIDEO(0),
+    IMAGE(1),
+    HTML(2);
+    private final Integer number;
 
+    public static SlideType getByNumber(Integer number) {
+        for(SlideType i: values()) {
+            if (i.number == number) return i;
+        }
+        return null;
+    }
+
+    SlideType(Integer i) {
+        this.number = i;
+    }
 }
