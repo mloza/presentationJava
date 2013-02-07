@@ -1,5 +1,6 @@
 package pl.edu.pk.wieik.pwj.presentation.controller;
 
+import pl.edu.pk.wieik.pwj.presentation.model.News;
 import pl.edu.pk.wieik.pwj.presentation.model.Presentation;
 import pl.edu.pk.wieik.pwj.presentation.model.Slide;
 import pl.edu.pk.wieik.pwj.presentation.model.SlideType;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -27,35 +29,45 @@ public class MainController extends HttpServlet {
 
     	
     	//tests
-        Presentation p = Presentation.factory().get(1);
+//        Presentation p = Presentation.factory().get(1);
+//        
+//        Presentation p2 = Presentation.factory();
+//        p2.setId(2);
+//        p2.setName("prezentacja2");
+//      
+//        
+//        Slide sl = Slide.factory();
+//        sl.setDuration(15);
+//        sl.setPosition(5);
+//        sl.setType(SlideType.HTML);
+//        
+//        Slide sl2 = Slide.factory();
+//        sl2.setDuration(111);
+//        sl2.setPosition(222);
+//        sl2.setType(SlideType.IMAGE);
+//        
+//        Slide sl3 = Slide.factory();
+//        sl3.setDuration(777);
+//        sl3.setPosition(666);
+//        sl3.setType(SlideType.VIDEO);
+//        
+//                
+//        List<Slide> slides = p2.getSlides();
+//        slides.add(sl);
+//        slides.add(sl2);
+//        slides.add(sl3);
+//        
+//        p2.save();
         
-        Presentation p2 = Presentation.factory();
-        p2.setId(2);
-        p2.setName("prezentacja2");
-      
+    	News news = News.factory();
+//    	news.setContent("to jest wiadmosoc");
+//    	news.setPosition(5);
+//    	news.setDate(new java.sql.Date(15));
+//    	news.save();
+    	
+    	news.editContent(1, "poprawka");
         
-        Slide sl = Slide.factory();
-        sl.setDuration(15);
-        sl.setPosition(5);
-        sl.setType(SlideType.HTML);
         
-        Slide sl2 = Slide.factory();
-        sl2.setDuration(111);
-        sl2.setPosition(222);
-        sl2.setType(SlideType.IMAGE);
-        
-        Slide sl3 = Slide.factory();
-        sl3.setDuration(777);
-        sl3.setPosition(666);
-        sl3.setType(SlideType.VIDEO);
-        
-                
-        List<Slide> slides = p2.getSlides();
-        slides.add(sl);
-        slides.add(sl2);
-        slides.add(sl3);
-        
-        p2.save();
         //end tests
         //p.getSlides();
 
