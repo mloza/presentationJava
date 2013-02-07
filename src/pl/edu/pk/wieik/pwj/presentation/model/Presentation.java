@@ -1,10 +1,13 @@
 package pl.edu.pk.wieik.pwj.presentation.model;
 
+import pl.edu.pk.wieik.pwj.presentation.libs.Database;
 import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+
+import com.mysql.jdbc.PreparedStatement;
 
 /**
  * Created with IntelliJ IDEA.
@@ -74,30 +77,43 @@ public class Presentation extends Model<Presentation> implements ModelInt {
     
     //artx - zapisanie calej prezentacji ze slajdami (cos mi insert nie dizala 
     public void save(){
-//    	try{
-//    		//INSERT INTO presentation values (2,'prezentacja2')
-//    		ps("INSERT INTO presentation(name) values (?) ").set(name).update();
-//    		
-//    		}
-//    	catch(SQLException e){
-//    		  e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-//    	}
-    	
     	try {
     		ps("INSERT INTO presentation(name) values (?) ").set(name).update();
+    		String insert = "INSERT INTO slide (presentation_id, duration, position, type) values (?, ?, ?, ?) ";
+			String select = "SELECT ID FROM presentation WHERE name = (?) LIMIT 1"; 
+			java.sql.PreparedStatement st = DB.prepareStatement(insert);
+			java.sql.PreparedStatement stS = DB.prepareStatement(select);
+			stS.setString(1, this.getName());
+			ResultSet idP =  stS.executeQuery();
+			idP.first(); //ustawiam kursor na pierwszym(jedynym w zasadzie wyniku)
+			int presentation_id = idP.getInt(1); //biore sobie id
+			
     		for(Slide slide : slides){
     			if(slide.getType() == SlideType.HTML)
-    			{
-    				ps("INSERT INTO slide (presentation_id, duration, position, type) values (?, ?, ?, ?) ").set(this.getId()).set(slide.getDuration()).set(slide.getPosition()).set(slide.getType().ordinal()).update();
-    				
-    				//ps("INSERT INTO slide(position) values (?) ").set(slide.getDuration()).update();
-
+    			{	
+    				st.setInt(1, presentation_id); //zapsiuje z id danej prezentacji
+    				st.setInt(2, slide.getDuration());
+    				st.setInt(3, slide.getPosition());
+    				st.setInt(4, slide.getType().ordinal());
+    				st.execute();
 	    			}
-	    			else if(slide.getType() == SlideType.IMAGE){
-    				
-    			}
-    			else if(slide.getType() == SlideType.VIDEO){
-    				
+    			
+	    		if(slide.getType() == SlideType.IMAGE){
+	    		
+    				st.setInt(1, presentation_id); //zapsiuje z id danej prezentacji
+    				st.setInt(2, slide.getDuration());
+    				st.setInt(3, slide.getPosition());
+    				st.setInt(4, slide.getType().ordinal());
+    				st.execute();
+    				}
+	    		
+    			if(slide.getType() == SlideType.VIDEO){
+    			
+    				st.setInt(1, presentation_id); //zapsiuje z id danej prezentacji
+    				st.setInt(2, slide.getDuration());
+    				st.setInt(3, slide.getPosition());
+    				st.setInt(4, slide.getType().ordinal());
+    				st.execute();
     			}
     		}
     		

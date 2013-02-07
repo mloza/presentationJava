@@ -25,7 +25,8 @@ public class MainController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+    	
+    	//tests
         Presentation p = Presentation.factory().get(1);
         
         Presentation p2 = Presentation.factory();
@@ -37,11 +38,25 @@ public class MainController extends HttpServlet {
         sl.setDuration(15);
         sl.setPosition(5);
         sl.setType(SlideType.HTML);
-                
         
-        p2.getSlides().add(sl);
+        Slide sl2 = Slide.factory();
+        sl2.setDuration(111);
+        sl2.setPosition(222);
+        sl2.setType(SlideType.IMAGE);
+        
+        Slide sl3 = Slide.factory();
+        sl3.setDuration(777);
+        sl3.setPosition(666);
+        sl3.setType(SlideType.VIDEO);
+        
+                
+        List<Slide> slides = p2.getSlides();
+        slides.add(sl);
+        slides.add(sl2);
+        slides.add(sl3);
+        
         p2.save();
-
+        //end tests
         //p.getSlides();
 
         //request.setAttribute("p", p);
