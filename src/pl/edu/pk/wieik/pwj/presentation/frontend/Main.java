@@ -35,10 +35,12 @@ public class Main extends Application {
     public void start(Stage stage) {
         // create the scene
         stage.setTitle("Web View");
-        scene = new Scene(new Browser(), 750, 500, Color.web("#666970"));
+        scene = new Scene(new HtmlViewBrowser(), 750, 500, Color.web("#666970"));
         stage.setScene(scene);
         //scene.getStylesheets().add("webviewsample/BrowserToolbar.css");
         stage.show();
+
+        stage.setFullScreen(true);
     }
 
     public static void main(String[] args) {
@@ -46,30 +48,16 @@ public class Main extends Application {
     }
 }
 
-class Browser extends Region {
+class HtmlViewBrowser extends Region {
 
     final WebView browser = new WebView();
     final WebEngine webEngine = browser.getEngine();
 
-    public Browser() {
-        //apply the styles
-        //getStyleClass().add("browser");
-        // load the web page
-
-        webEngine.load("http://google.com");
-
-        String scrollScript = "<script type=\"text/javascript\">i = 0; setTimer(100, scroll); function scroll() { window.scrollTo(0, i+1); }</script>";
-
-        webEngine.loadContent(((HtmlSlide) Slide.factory().get(3).getExtend()).getContent()+scrollScript);
-        //add the web view to the scene
+    public HtmlViewBrowser() {
+        Slide slide = Slide.factory().get(26);
+        String scrollScript = "<script type=\"text/javascript\"> var i = 0; function scroll() { scrollTo(0, i++); } setInterval(function() { scroll(); }, "+slide.getDuration()+"/document.getElementsByTagName('body')[0].scrollHeight);</script>";
+        webEngine.loadContent(((HtmlSlide) slide.getExtend()).getContent()+scrollScript);
         getChildren().add(browser);
-
-
-
-        //System.out.println(webEngine.getDocument().getElementById("para"));
-        //JSObject p = (JSObject) webEngine.executeScript("document.getElementsByTagName('h1')[0]");
-        //System.out.println(p);
-        //p.setAttribute("style", "font-weight: bold");
     }
 
     private Node createSpacer() {
