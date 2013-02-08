@@ -111,7 +111,7 @@ public class News extends Model<News> implements ModelInt {
 		
 	}
 	
-	  public List<News> getAll() {
+	  public List<News> getAllNews() {
 	      
 	    	List<News> news = new ArrayList<News>();
 	        
