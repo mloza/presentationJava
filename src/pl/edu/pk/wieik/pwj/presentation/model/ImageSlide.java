@@ -59,7 +59,7 @@ public class ImageSlide extends SlideExtend {
     }
 
     @Override
-    protected SlideExtend load(ResultSet res) throws SQLException {
+    public SlideExtend load(ResultSet res) throws SQLException {
         this.id = res.getInt("i:id");
         this.description = res.getString("i:description");
         this.path = res.getString("i:path");

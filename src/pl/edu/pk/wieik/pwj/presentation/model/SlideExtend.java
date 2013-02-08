@@ -11,5 +11,5 @@ import java.sql.SQLException;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class SlideExtend extends Model {
-    protected abstract SlideExtend load(ResultSet res) throws SQLException;
+    public abstract SlideExtend load(ResultSet res) throws SQLException;
 }
