@@ -141,5 +141,14 @@ public class News extends Model<News> implements ModelInt {
 			} 
 	        return news;
 	  }
+	  
+	  public void remove(Integer newsId){
+		  try {
+			DB.prepareStatement("DELETE FROM news where id = "+newsId).execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	  }
 
 }
