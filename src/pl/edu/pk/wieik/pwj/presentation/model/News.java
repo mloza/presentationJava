@@ -119,6 +119,34 @@ public class News extends Model<News> implements ModelInt {
 		
 	}
 	
+	public List<News> getSortedNews(){
+		List<News> news = new ArrayList<News>();
+        
+	      
+        try {
+        	
+        	ResultSet prs = DB.prepareStatement("SELECT * FROM news ODER By position ASC").executeQuery();
+        	prs.first();
+        	while(!prs.isAfterLast()){
+        		News temp = News.factory();
+        		int newsId = prs.getInt(1);
+        		temp.setId(prs.getInt(1));
+        		temp.setContent(prs.getString(2));
+        		temp.setDate(prs.getDate(3));
+        		temp.setPosition(prs.getInt(4));
+        		news.add(temp);
+        		prs.next();
+        	}
+
+        }
+        catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+        return news;
+		
+	}
+	
 	  public List<News> getAllNews() {
 	      
 	    	List<News> news = new ArrayList<News>();
@@ -148,6 +176,15 @@ public class News extends Model<News> implements ModelInt {
 				e.printStackTrace();
 			} 
 	        return news;
+	  }
+	  
+	  public void delete(){
+		  try {
+			DB.prepareStatement("DELETE FROM news where id = "+this.getId()).execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	  }
 
 }
