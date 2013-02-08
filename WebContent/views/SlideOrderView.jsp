@@ -70,9 +70,7 @@
     <thead>
         <tr>
             <!-- This is a special cell for loading statuses - see below for more -->
-            <th scope="col">Pozyrzony w Krystynę Pawłowicz, mimo że ta jest wciąż aktywnym działaczem PiS. No ale przecież skoro Grodzka to zasugerowała, to coś musi być na rzeczy. 
-            cja</th> 
-            <th scope="col">Nazwa</th>
+            <th scope="col">Pozycja</th> 
             <th scope="col">Czas trwania</th>
             <th scope="col">Typ</th>
             <th scope="col">Opis</th>
@@ -103,26 +101,7 @@
 		            </td>
 	         </tr>
 		</c:forEach>
-         
-         
-        <tr>
-            <td>1</td>
-            <td>zdjęcie 1</td>
-            <td>10</td>
-            <td>zdjęcie</td>
-            <td>przedstawia zdjęcie</td>
-            
-            <!-- The class table-actions is designed for action icons -->
-            <td class="table-actions">
-                <a href="#" title="Przesuń w górę" class="with-tip"><img src="images/icons/fugue/navigation-090.png" width="16" height="16"></a>
-                <a href="#" title="Przesuń w dół" class="with-tip"><img src="images/icons/fugue/navigation-270.png" width="16" height="16"></a>
-                <a href="#" title="Edytuj" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
-                <a href="#" title="Usuń" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
-            </td>
-        </tr>
-
     </tbody>
- 
 </table>
 
 </body>

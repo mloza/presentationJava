@@ -64,13 +64,11 @@
 <title>Lista prezentacji</title>
 </head>
 <body>
-
 <table class="table" cellspacing="0" width="100%">
  
     <thead>
         <tr>
             <!-- This is a special cell for loading statuses - see below for more -->
-            <th scope="col">ID</th> 
             <th scope="col">Nazwa</th>
             <th scope="col">Liczba slajdów</th>
             <th scope="col" class="table-actions">Działania</th>
@@ -83,40 +81,18 @@
             
         </tr>
     </tfoot>
-     
     <tbody> 
         <c:forEach var="presentation" items="${presentations}">
 	         <tr>
-		            <td>${presentation.id }</td>
 		            <td>${presentation.name }</td>
 		            <td>${presentation.getSlides().size() }</td>
 					<!-- The class table-actions is designed for action icons -->
 		            <td class="table-actions">
-		                <a href="#" title="Przesuń w górę" class="with-tip"><img src="images/icons/fugue/navigation-090.png" width="16" height="16"></a>
-		                <a href="#" title="Przesuń w dół" class="with-tip"><img src="images/icons/fugue/navigation-270.png" width="16" height="16"></a>
-		                <a href="#" title="Edytuj" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
-		                <a href="#" title="Usuń" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+		                <a href="/presentation/slideorder?presentationID=${presentation.id }&action=edit" title="Edytuj" class="with-tip" name="edit"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+		                <a href="/presentation/presentations?presentationID=${presentation.id }&action=delete" title="Usuń" class="with-tip" name="delete"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
 		            </td>
 	         </tr>
 		</c:forEach>
-         
-         
-        <tr>
-            <td>1</td>
-            <td>zdjęcie 1</td>
-            <td>10</td>
-            <td>zdjęcie</td>
-            <td>przedstawia zdjęcie</td>
-            
-            <!-- The class table-actions is designed for action icons -->
-            <td class="table-actions">
-                <a href="#" title="Przesuń w górę" class="with-tip"><img src="images/icons/fugue/navigation-090.png" width="16" height="16"></a>
-                <a href="#" title="Przesuń w dół" class="with-tip"><img src="images/icons/fugue/navigation-270.png" width="16" height="16"></a>
-                <a href="#" title="Edytuj" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
-                <a href="#" title="Usuń" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
-            </td>
-        </tr>
-
     </tbody>
  
 </table>
