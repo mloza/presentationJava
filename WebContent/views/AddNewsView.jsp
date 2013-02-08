@@ -70,7 +70,7 @@
 <!--[if lt IE 9]><div class="ie"><![endif]-->
 <!--[if lt IE 8]><div class="ie7"><![endif]-->
     
-    <jsp:include page="/views/header.jsp"></jsp:include>
+    <jsp:include page="/views/elements/header.jsp"></jsp:include>
     
     <div class="container_12">
     	<p></p>

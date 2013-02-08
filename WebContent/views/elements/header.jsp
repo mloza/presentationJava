@@ -1,12 +1,73 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+
+    <title>Panel Administracyjny</title>
+    <meta charset="utf-8">
+
+    <!-- Global stylesheets -->
+    <link href="<c:url value="/css/reset.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/common.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/form.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/standard.css"/>" rel="stylesheet" type="text/css">
+
+    <!-- Comment/uncomment one of these files to toggle between fixed and fluid layout -->
+    <!--<link href="<c:url value="/css/960.gs.css"/>" rel="stylesheet" type="text/css">-->
+    <link href="<c:url value="/css/960.gs.fluid.css"/>" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles -->
+    <link href="<c:url value="/css/simple-lists.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/block-lists.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/planning.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/table.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/calendars.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/wizard.css"/>" rel="stylesheet" type="text/css">
+    <link href="<c:url value="/css/gallery.css"/>" rel="stylesheet" type="text/css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/favicon.ico"/>">
+    <link rel="icon" type="image/png" href="<c:url value="/favicon-large.png"/>">
+
+    <!-- Generic libs -->
+    <script type="text/javascript" src="<c:url value="/js/html5.js"/>"></script>              <!-- this has to be loaded before anything else -->
+<script type="text/javascript" src="<c:url value="/js/jquery-1.4.2.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/old-browsers.js"/>"></script>       <!-- remove if you do not need older browsers detection -->
+
+<!-- Template libs -->
+<script type="text/javascript" src="<c:url value="/js/jquery.accessibleList.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/searchField.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/common.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/standard.js"/>"></script>
+    <!--[if lte IE 8]><script type="text/javascript" src="<c:url value="/js/standard.ie.js"/>"></script><![endif]-->
+    <script type="text/javascript" src="<c:url value="/js/jquery.tip.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/jquery.hashchange.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/jquery.contextMenu.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/js/jquery.modal.js"/>"></script>
+
+    <!-- Custom styles lib -->
+    <script type="text/javascript" src="<c:url value="/js/list.js"/>"></script>
+
+    <!-- Plugins -->
+    <script  type="text/javascript" src="<c:url value="/js/jquery.dataTables.min.js"/>"></script>
+    <script  type="text/javascript" src="<c:url value="/js/jquery.datepick/jquery.datepick.min.js"/>"></script>
+
+    <!-- Charts library -->
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+        // Load the Visualization API and the piechart package.
+        google.load('visualization', '1', {'packages':['corechart']});
+
+    </script>
+
 </head>
 <body>
-<!-- Header -->
+<!-- The template uses conditional comments to add wrappers div for ie8 and ie7 - just add .ie or .ie7 prefix to your css selectors when needed -->
+<!--[if lt IE 9]><div class="ie"><![endif]-->
+<!--[if lt IE 8]><div class="ie7"><![endif]-->
 
     <!-- Server status -->
     <header><div class="container_12">
