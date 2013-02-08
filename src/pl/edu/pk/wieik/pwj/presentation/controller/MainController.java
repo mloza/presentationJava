@@ -1,5 +1,6 @@
 package pl.edu.pk.wieik.pwj.presentation.controller;
 
+import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
 import pl.edu.pk.wieik.pwj.presentation.model.News;
 import pl.edu.pk.wieik.pwj.presentation.model.Presentation;
 import pl.edu.pk.wieik.pwj.presentation.model.Slide;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.util.List;
 
@@ -59,23 +61,46 @@ public class MainController extends HttpServlet {
 //        
 //        p2.save();
         
-    	News news = News.factory();
+
+        PrintWriter out = response.getWriter();
+        News news = News.factory();
+        for(ModelInt i: news.getAll()) {
+            out.write(((News)i).getContent());
+        }
+
+        Presentation presentation = Presentation.factory();
+        for(ModelInt i: presentation.getAll()) {
+            out.write(((Presentation)i).getName());
+            for(Slide j: ((Presentation)i).getSlides()) {
+                out.write(j.getType().name());
+            }
+        }
+
+       news.remove(2);
+        
 //    	news.setContent("to jest wiadmosoc");
 //    	news.setPosition(5);
 //    	news.setDate(new java.sql.Date(15));
 //    	news.save();
     	
-    	news.editContent(1, "poprawka");
+    	//news.editContent(1, "poprawka");
+        //Presentation list = Presentation.factory();
+        //list.getAll();
+        /*for(Presentation p : list.getAll()){
+        	System.out.println(p.getName());
+        } */
         
+      
+        news.getAll();
         
         //end tests
         //p.getSlides();
 
         //request.setAttribute("p", p);
 
-        List<Slide> s = Slide.factory().getAll(1);
+       /* List<Slide> s = Slide.factory().getAll(1);
 
-        request.getRequestDispatcher("views/main/index.jsp").forward(request, response);
+        request.getRequestDispatcher("views/main/index.jsp").forward(request, response);*/
     }
 
 }
