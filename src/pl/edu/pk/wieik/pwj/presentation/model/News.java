@@ -125,7 +125,7 @@ public class News extends Model<News> implements ModelInt {
 	      
         try {
         	
-        	ResultSet prs = DB.prepareStatement("SELECT * FROM news ODER By position ASC").executeQuery();
+        	ResultSet prs = DB.prepareStatement("SELECT * FROM news ORDER By position ASC").executeQuery();
         	prs.first();
         	while(!prs.isAfterLast()){
         		News temp = News.factory();
