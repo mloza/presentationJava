@@ -42,7 +42,7 @@ public class HtmlSlide extends SlideExtend {
 
 
     @Override
-    protected SlideExtend load(ResultSet res) throws SQLException {
+    public SlideExtend load(ResultSet res) throws SQLException {
         this.id = res.getInt("h:id");
         this.description = res.getString("h:description");
         this.content = res.getString("h:content");

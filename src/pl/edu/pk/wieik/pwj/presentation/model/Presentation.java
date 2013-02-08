@@ -76,7 +76,7 @@ public class Presentation extends Model<Presentation> implements ModelInt {
         return slides;
     }
     
-    public List<Presentation> getAll() {
+    /*public List<Presentation> getAll() {
       
     	List<Presentation> presentations = new ArrayList<Presentation>();
         
@@ -139,7 +139,7 @@ public class Presentation extends Model<Presentation> implements ModelInt {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
        return presentations;
-    }
+    }*/
     
         
     //artx - zapisanie calej prezentacji ze slajdami (cos mi insert nie dizala 
