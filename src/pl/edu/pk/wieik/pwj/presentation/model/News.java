@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
@@ -61,8 +63,6 @@ public class News extends Model<News> implements ModelInt {
 		this.position = position;
 	}
 	
-	
-
 	@Override
 	public ModelInt load(ResultSet res) throws SQLException {
 		this.id = res.getInt(1);
@@ -118,5 +118,36 @@ public class News extends Model<News> implements ModelInt {
 		} 
 		
 	}
+	
+	  public List<News> getAllNews() {
+	      
+	    	List<News> news = new ArrayList<News>();
+	        
+	      
+	        try {
+	        	
+	        	ResultSet prs = DB.prepareStatement("SELECT * FROM news").executeQuery();
+	        	prs.first();
+	        	while(!prs.isAfterLast()){
+	        		News temp = News.factory();
+	        		int newsId = prs.getInt(1);
+	        
+	        		temp.setId(prs.getInt(1));
+	        		temp.setContent(prs.getString(2));
+	        		temp.setDate(prs.getDate(3));
+	        		temp.setPosition(prs.getInt(4));
+	        		System.out.println(temp.getId());
+	        		System.out.println(temp.getContent());
+	        		news.add(temp);
+	        		prs.next();
+	        	}
+	
+	        }
+	        catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+	        return news;
+	  }
 
 }

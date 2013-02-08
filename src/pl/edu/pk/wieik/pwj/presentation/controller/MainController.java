@@ -88,6 +88,9 @@ public class MainController extends HttpServlet {
         	System.out.println(p.getName());
         } */
         
+      
+        news.getAll();
+        
         //end tests
         //p.getSlides();
 
