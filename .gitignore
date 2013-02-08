@@ -10,5 +10,4 @@ build/
 
 
 # Package Files except JAR libs #
-*.war
 *.ear

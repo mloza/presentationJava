@@ -17,6 +17,14 @@ public class News extends Model<News> implements ModelInt {
 	protected Date date;
 	protected Integer position;
 	
+	// TODO Konstruktor tylko do testów
+	public News(Integer id, String content, Date date, Integer position) {
+		this.id = id;
+		this.content = content;
+		this.date = date;
+		this.position = position;
+	}
+	
 	protected News() { };
 	
 	  public static News factory() {
