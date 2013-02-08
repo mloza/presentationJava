@@ -8,26 +8,26 @@
     <meta charset="utf-8">
     
     <!-- Global stylesheets -->
-    <link href="css/reset.css" rel="stylesheet" type="text/css">
-    <link href="css/common.css" rel="stylesheet" type="text/css">
-    <link href="css/form.css" rel="stylesheet" type="text/css">
-    <link href="css/standard.css" rel="stylesheet" type="text/css">
-    <link href="css/special-pages.css" rel="stylesheet" type="text/css">
+    <link href="/presentation/css/reset.css" rel="stylesheet" type="text/css">
+    <link href="/presentation/css/common.css" rel="stylesheet" type="text/css">
+    <link href="/presentation/css/form.css" rel="stylesheet" type="text/css">
+    <link href="/presentation/css/standard.css" rel="stylesheet" type="text/css">
+    <link href="/presentation/css/special-pages.css" rel="stylesheet" type="text/css">
     
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" href="favicon-large.png">
     
     <!-- Generic libs -->
-    <script type="text/javascript" src="js/html5.js"></script><!-- this has to be loaded before anything else -->
-    <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-    <script type="text/javascript" src="js/old-browsers.js"></script>       <!-- remove if you do not need older browsers detection -->
+    <script type="text/javascript" src="/presentation/js/html5.js"></script><!-- this has to be loaded before anything else -->
+    <script type="text/javascript" src="/presentation/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="/presentation/js/old-browsers.js"></script>       <!-- remove if you do not need older browsers detection -->
     
     <!-- Template core functions -->
-    <script type="text/javascript" src="js/common.js"></script>
-    <script type="text/javascript" src="js/standard.js"></script>
-    <!--[if lte IE 8]><script type="text/javascript" src="js/standard.ie.js"></script><![endif]-->
-    <script type="text/javascript" src="js/jquery.tip.js"></script>
+    <script type="text/javascript" src="/presentation/js/common.js"></script>
+    <script type="text/javascript" src="/presentation/js/standard.js"></script>
+    <!--[if lte IE 8]><script type="text/javascript" src="/presentation/js/standard.ie.js"></script><![endif]-->
+    <script type="text/javascript" src="/presentation/js/jquery.tip.js"></script>
     
 </head>
 <body class="special-page login-bg dark">
