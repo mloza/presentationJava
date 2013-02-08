@@ -103,6 +103,19 @@ public class News extends Model<News> implements ModelInt {
 			e.printStackTrace();
 		} 
 		
+	}
+	public void editPosition(Integer newsId, String newPosition){
+		try{
+			String update = "UPDATE news SET position = ? WHERE id = ? ";
+			PreparedStatement st = DB.prepareStatement(update);
+			st.setString(1, newPosition);
+			st.setInt(2, newsId);
+			st.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 	}
 

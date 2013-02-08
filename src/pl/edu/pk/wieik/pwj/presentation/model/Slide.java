@@ -2,6 +2,7 @@ package pl.edu.pk.wieik.pwj.presentation.model;
 
 import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -117,14 +118,33 @@ public class Slide extends Model<Slide> implements ModelInt {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
     
-//    public void save(){
-//    	try{
-//    	
-//    		ps("INSERT INTO slide(duration, position, type) values (?,?,?)").set(this.getDuration()).set(this.getPosition()).set(this.getType().toString()).update();
-//    		
-//    		}
-//    	catch(SQLException e){
-//    		  e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-//    	}
-//    }
+    public void editDuration(Integer slideId, String newDuration){
+		try{
+			String update = "UPDATE slide SET duration = ? WHERE id = ? ";
+			PreparedStatement st = DB.prepareStatement(update);
+			st.setString(1, newDuration);
+			st.setInt(2, slideId);
+			st.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+	}
+    public void editPosition(Integer slideId, String newPosition){
+		try{
+			String update = "UPDATE slide SET position = ? WHERE id = ? ";
+			PreparedStatement st = DB.prepareStatement(update);
+			st.setString(1, newPosition);
+			st.setInt(2, slideId);
+			st.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+	}
+    
 }

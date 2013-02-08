@@ -66,7 +66,11 @@ public class MainController extends HttpServlet {
 //    	news.save();
     	
     	news.editContent(1, "poprawka");
-        
+        Presentation list = Presentation.factory();
+        //list.getAll();
+        for(Presentation p : list.getAll()){
+        	System.out.println(p.getName());
+        }
         
         //end tests
         //p.getSlides();
