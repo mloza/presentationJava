@@ -1,5 +1,6 @@
 package pl.edu.pk.wieik.pwj.presentation.frontend;
 
+import javafx.application.Platform;
 import pl.edu.pk.wieik.pwj.presentation.model.Presentation;
 import pl.edu.pk.wieik.pwj.presentation.model.Slide;
 
@@ -14,7 +15,7 @@ import java.util.TimerTask;
  * Time: 21:13
  * To change this template use File | Settings | File Templates.
  */
-public class PresentationManager{
+public class PresentationManager implements Runnable {
     Presentation presentation;
     List<Slide> slides;
     Integer cursor = 0;
@@ -39,8 +40,8 @@ public class PresentationManager{
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
-                PresentationManager.this.run();
+                Platform.runLater(PresentationManager.this);
             }
-        }, 0, 5000);
+        }, 5000);
     }
 }
