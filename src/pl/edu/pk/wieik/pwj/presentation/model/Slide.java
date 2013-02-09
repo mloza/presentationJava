@@ -54,6 +54,14 @@ public class Slide extends Model<Slide> implements ModelInt {
         this.type = type;
     }
 
+    public SlideExtend getExtend() {
+        return extend;
+    }
+
+    public void setExtend(SlideExtend extend) {
+        this.extend = extend;
+    }
+
     protected Slide() {}
 
     public static Slide factory() {
@@ -62,7 +70,7 @@ public class Slide extends Model<Slide> implements ModelInt {
 
     public Slide get(Integer id) {
         try {
-            ps("SELECT s.id, s.duration, s.position, s.type, h.id as `h:id`, h.description as `h:description`, h.content as `h:content`, i.id as `i:id`, i.description as `i:description`, i.width as `i:width`, i.height as `i:height`, i.path as `i:path`, v.id as `v:id`, v.name as `v:name`, v.description as `v:description`, v.fps as `v:fps`, v.format as `v:format`, v.path as `v:path`  FROM `slide` WHERE id = ? LIMIT 1").set(id).execute();
+            ps("SELECT s.id, s.duration, s.position, s.type, h.id as `h:id`, h.description as `h:description`, h.content as `h:content`, i.id as `i:id`, i.description as `i:description`, i.width as `i:width`, i.height as `i:height`, i.path as `i:path`, v.id as `v:id`, v.name as `v:name`, v.description as `v:description`, v.fps as `v:fps`, v.format as `v:format`, v.path as `v:path` FROM `slide` as s LEFT JOIN htmlSlide h on s.id = h.slide_id LEFT JOIN imageSlide i on s.id = i.slide_id LEFT JOIN videoSlide v on s.id = v.slide_id WHERE s.id = ? LIMIT 1").set(id).execute();
             res.next();
 
             load(res);
