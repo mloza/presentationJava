@@ -133,7 +133,7 @@
             </li>
             <li class="medias"><a href="#" title="Prezentacje">Prezentacje</a>
                 <ul>
-                    <li><a href="#" title="Lista prezentacji">Zarządzaj prezentacjami</a></li>
+                    <li><a href="/presentation/presentations" title="Lista prezentacji">Zarządzaj prezentacjami</a></li>
                     <li><a href="#" title="Dodaj prezentację">Dodaj prezentację</a></li>
                 </ul>
             </li>

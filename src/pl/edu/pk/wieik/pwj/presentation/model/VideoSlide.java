@@ -14,7 +14,6 @@ import java.sql.SQLException;
 public class VideoSlide extends SlideExtend {
     protected Integer id;
     protected String name;
-    protected String description;
     protected Integer fps;
     protected String format;
     protected String path;
@@ -33,14 +32,6 @@ public class VideoSlide extends SlideExtend {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Integer getFps() {
@@ -71,7 +62,6 @@ public class VideoSlide extends SlideExtend {
     public SlideExtend load(ResultSet res) throws SQLException {
         this.id = res.getInt("v:id");
         this.name = res.getString("v:name");
-        this.description = res.getString("v:description");
         this.path = res.getString("v:path");
         this.fps = res.getInt("v:fps");
         this.format = res.getString("v:format");
@@ -80,13 +70,12 @@ public class VideoSlide extends SlideExtend {
 
     public void save(){
         try {
-            String insert = "INSERT INTO videoSlide (name, description, fps, format, path) values (?, ?, ?, ?, ?) ";
+            String insert = "INSERT INTO videoSlide (name, fps, format, path) values (?, ?, ?, ?) ";
             java.sql.PreparedStatement st = DB.prepareStatement(insert);
             st.setString(1, this.getName());
-            st.setString(2, this.getDescription());
-            st.setInt(3, this.getFps());
-            st.setString(4, this.getFormat());
-            st.setString(5, this.getPath());
+            st.setInt(2, this.getFps());
+            st.setString(3, this.getFormat());
+            st.setString(4, this.getPath());
             st.execute();
 
         } catch (SQLException e) {
@@ -100,20 +89,6 @@ public class VideoSlide extends SlideExtend {
             String update = "UPDATE videoSlide SET name = ? WHERE id = ? ";
             PreparedStatement st = DB.prepareStatement(update);
             st.setString(1, newName);
-            st.setInt(2, videoSlideId);
-            st.executeUpdate();
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    public void editDescription(Integer videoSlideId, String newDescription){
-        try{
-            String update = "UPDATE videoSlide SET description = ? WHERE id = ? ";
-            PreparedStatement st = DB.prepareStatement(update);
-            st.setString(1, newDescription);
             st.setInt(2, videoSlideId);
             st.executeUpdate();
 

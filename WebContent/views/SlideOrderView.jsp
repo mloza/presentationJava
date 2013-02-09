@@ -35,12 +35,12 @@
     <script type="text/javascript" src="js/old-browsers.js"></script>       <!-- remove if you do not need older browsers detection -->
     
     <!-- Template libs -->
+    <script type="text/javascript" src="js/list.js"></script>
     <script type="text/javascript" src="js/jquery.accessibleList.js"></script>
     <script type="text/javascript" src="js/searchField.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="js/standard.js"></script>
     <!--[if lte IE 8]><script type="text/javascript" src="js/standard.ie.js"></script><![endif]-->
-    <script type="text/javascript" src="js/jquery.tip.js"></script>
     <script type="text/javascript" src="js/jquery.hashchange.js"></script>
     <script type="text/javascript" src="js/jquery.contextMenu.js"></script>
     <script type="text/javascript" src="js/jquery.modal.js"></script>
@@ -61,10 +61,10 @@
         google.load('visualization', '1', {'packages':['corechart']});
         
     </script>
-<title>Insert title here</title>
+<title>Zmień kolejność slajdów</title>
 </head>
 <body>
-
+<jsp:include page="/views/elements/header.jsp"/>
 <table class="table" cellspacing="0" width="100%">
  
     <thead>
@@ -80,29 +80,55 @@
  
     <tfoot>
         <tr>
-            <td colspan="6"><img src="images/icons/fugue/arrow-curve-000-left.png" width="16" height="16" class="picto"> <b>Ilość wszystkich elementów:</b> 6 records found</td>
-            
+            <td colspan="6"><img src="images/icons/fugue/arrow-curve-000-left.png" width="16" height="16" class="picto"> <b>Ilość wszystkich elementów:</b> ${slides.size() }</td>
         </tr>
     </tfoot>
-     
     <tbody> 
-        <c:forEach var="slide" items="${presentation.slides}">
+        <c:forEach var="slide" items="${slides}" varStatus="idx">
 	         <tr>
 		            <td>${slide.position }</td>
 		            <td>${slide.duration }</td>
 		            <td>${slide.type }</td>
-		            <td>opis</td>
+		            <td>${slide.description }</td>
 					<!-- The class table-actions is designed for action icons -->
 		            <td class="table-actions">
-		                <a href="#" title="Przesuń w górę" class="with-tip"><img src="images/icons/fugue/navigation-090.png" width="16" height="16"></a>
-		                <a href="#" title="Przesuń w dół" class="with-tip"><img src="images/icons/fugue/navigation-270.png" width="16" height="16"></a>
-		                <a href="#" title="Edytuj" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
-		                <a href="#" title="Usuń" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+			            <c:if test="${idx.index != 0 }">
+				             <form action="/presentation/slideorder" method="post" style="float: left">
+				                <input type="hidden" name="action" value="up"/>
+				                <input type="hidden" name="slideID" value="${slide.id}"/>
+				                <input type="hidden" name="slidePos" value="${slide.position}"/>
+				                <input type="hidden" name="presentationID" value="${presentationID}"/>
+				                <input type="image" title="Przesuń w górę" class="with-tip" src="images/icons/fugue/navigation-090.png" width="16" height="16"/>
+				            </form>
+			            </c:if>
+			            <c:if test="${idx.index != slides.size()-1 }">
+				            <form action="/presentation/slideorder" method="post" style="float: left">
+				                <input type="hidden" name="action" value="down"/>
+				                <input type="hidden" name="slideID" value="${slide.id}"/>
+				                <input type="hidden" name="slidePos" value="${slide.position}"/>
+				                <input type="hidden" name="presentationID" value="${presentationID}"/>
+				                <input type="image" title="Przesuń w dół" class="with-tip" src="images/icons/fugue/navigation-270.png" width="16" height="16"/>
+				           </form>
+			            </c:if>    
+			            <form action="/presentation/editslide" method="post" style="float: left">
+			            		<input type="hidden" name="presentationID" value="${presentationID}"/>
+				                <input type="hidden" name="action" value="edit"/>
+				                <input type="hidden" name="slideID" value="${slide.id}"/>
+				                <input type="image" title="Edytuj" class="with-tip" src="images/icons/fugue/pencil.png" width="16" height="16"/>
+				        </form>
+				        <form action="/presentation/slideorder" method="post" style="float: left">
+				                <input type="hidden" name="action" value="delete"/>
+				                <input type="hidden" name="slideID" value="${slide.id}"/>
+				                <input type="hidden" name="slidePos" value="${slide.position}"/>
+				                <input type="hidden" name="presentationID" value="${presentationID}"/>
+				                <input type="image" title="Usuń" class="with-tip" src="images/icons/fugue/cross-circle.png" width="16" height="16"/>
+				        </form>   			                
 		            </td>
 	         </tr>
 		</c:forEach>
     </tbody>
+    
 </table>
-
+<jsp:include page="/views/elements/footer.jsp"/>
 </body>
 </html>

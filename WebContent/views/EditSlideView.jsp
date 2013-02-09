@@ -60,51 +60,47 @@
         google.load('visualization', '1', {'packages':['corechart']});
         
     </script>
-<title>Lista prezentacji</title>
+<title>Zmień dane slajdu</title>
 </head>
 <body>
  <jsp:include page="/views/elements/header.jsp"/>
-    
-<table class="table" cellspacing="0" width="100%">
- 
-    <thead>
-        <tr>
-            <!-- This is a special cell for loading statuses - see below for more -->
-            <th scope="col">Nazwa</th>
-            <th scope="col">Liczba slajdów</th>
-            <th scope="col" class="table-actions">Działania</th>
-        </tr>
-    </thead>
- 
-    <tfoot>
-        <tr>
-            <td colspan="6"><img src="images/icons/fugue/arrow-curve-000-left.png" width="16" height="16" class="picto"> <b>Ilość wszystkich elementów:</b> 6 records found</td>
-            
-        </tr>
-    </tfoot>
-    <tbody> 
-        <c:forEach var="presentation" items="${presentations}">
-	         <tr>
-		            <td>${presentation.name }</td>
-		            <td>${presentation.getSlides().size() }</td>
-					<!-- The class table-actions is designed for action icons -->
-		            <td class="table-actions">
-		            <form action="/presentation/presentations" method="post" style="float: left">
-		                <input type="hidden" name="action" value="editPresentation"/>
-		                <input type="hidden" name="presentationID" value="${presentation.id}"/>
-		                <input type="image" title="Edytuj" class="with-tip" src="images/icons/fugue/pencil.png" width="16" height="16"/>
-		            </form>
-		   			<form action="/presentation/presentations" method="post" style="float: left">
-		                <input type="hidden" name="action" value="deletePresentation"/>
-		                <input type="hidden" name="presentationID" value="${presentation.id}"/>
-		                <input type="image" title="Usuń" class="with-tip" src="images/icons/fugue/cross-circle.png" width="16" height="16"/>
-		            </form>
-		            </td>
-	         </tr>
-		</c:forEach>
-    </tbody>
- 
-</table>
+<div class="block-border">
+    <div class="block-content">
+        <h1>Edycja slajdu</h1>
+        <!-- Add the class 'form' -->
+<form method="post" class="form" action="/presentation/editslide">
+	<input type="hidden" name="action" value="edittedSlide" />
+	<input type="hidden" name="presentationID" value="${presentationID }" />
+    <!-- inline-label class can be applied to an entire div, fieldset or even form -->
+    <fieldset class="grey-bg inline-label">
+    	
+        <legend>Dane slajdu</legend>
+        <p>
+        	<label>ID slajdu: ${slide.id }</label>
+        	<input type="hidden" name="slideID" value="${slide.id }"/>
+        </p>
+        <br>
+        <p>
+        	<label>Pozycja slajdu: ${slide.position }</label>
+        </p>
+        <br>
+        <p>
+        	<label>Typ slajdu: ${slide.type }</label>
+        </p>
+        <br>
+       <p>
+            <label for="opis">Opis</label>
+            <textarea name="description" id="description" cols="50" rows="5">${slide.description } </textarea>
+        </p>
+        <p>
+            <label for="opis">Czas trwania</label>
+            <input type="text" name="duration" id="duration" value="${slide.duration }"/> sekund
+        </p>
+    </fieldset>  
+    <button type="button" onclick="submit()">Wyślij</button>
+</form>
+    </div>
+</div>
 <jsp:include page="/views/elements/footer.jsp"/>
 </body>
 </html>

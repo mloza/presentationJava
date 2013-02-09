@@ -2,6 +2,7 @@ package pl.edu.pk.wieik.pwj.presentation.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
 import pl.edu.pk.wieik.pwj.presentation.model.Model;
 import pl.edu.pk.wieik.pwj.presentation.model.Presentation;
 import pl.edu.pk.wieik.pwj.presentation.model.Slide;
+import pl.edu.pk.wieik.pwj.presentation.util.SlidesPositionComparator;
 
 @WebServlet("/presentations")
 public class PresentationsController extends HttpServlet {
@@ -33,11 +35,6 @@ public class PresentationsController extends HttpServlet {
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 			return;
 		}*/		
-		if(request.getParameter("action") != null) {
-			if(request.getParameter("action").equals("delete")) {
-				// dodać usuwanie prezentacji				
-			}
-		}
 		List<Model> models = Presentation.factory().getAll();
 		List<Presentation> presentations = new ArrayList<Presentation>();
 		for (Model i : models) {
@@ -48,6 +45,17 @@ public class PresentationsController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("action") != null) {
+			if(request.getParameter("action").equals("editPresentation")) {
+				request.getRequestDispatcher("/slideorder").forward(request, response);
+				return;				
+			}
+			if(request.getParameter("action").equals("delete")) {
+				// dodać usuwanie prezentacji				
+			}
+		}
+		request.setAttribute("msg", "Nieznany błąd. Spróbuj ponownie.");
+		request.getRequestDispatcher("_errors/error.jsp").forward(request, response);
 	}
 
 }
