@@ -4,7 +4,6 @@ import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
 import pl.edu.pk.wieik.pwj.presentation.model.News;
 import pl.edu.pk.wieik.pwj.presentation.model.Presentation;
 import pl.edu.pk.wieik.pwj.presentation.model.Slide;
-import pl.edu.pk.wieik.pwj.presentation.model.SlideType;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.

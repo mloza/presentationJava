@@ -1,14 +1,12 @@
 package pl.edu.pk.wieik.pwj.presentation.model;
-import pl.edu.pk.wieik.pwj.presentation.libs.Database;
+import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
+
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
 
 public class News extends Model<News> implements ModelInt {
 
@@ -121,8 +119,7 @@ public class News extends Model<News> implements ModelInt {
 	
 	public List<News> getSortedNews(){
 		List<News> news = new ArrayList<News>();
-        
-	      
+
         try {
         	
         	ResultSet prs = DB.prepareStatement("SELECT * FROM news ORDER By position ASC").executeQuery();

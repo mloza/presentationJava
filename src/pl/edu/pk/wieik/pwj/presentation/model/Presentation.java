@@ -1,14 +1,10 @@
 package pl.edu.pk.wieik.pwj.presentation.model;
 
-import pl.edu.pk.wieik.pwj.presentation.libs.Database;
 import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-
-import com.mysql.jdbc.PreparedStatement;
 
 /**
  * Created with IntelliJ IDEA.

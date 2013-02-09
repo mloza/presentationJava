@@ -1,19 +1,16 @@
 package pl.edu.pk.wieik.pwj.presentation.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import pl.edu.pk.wieik.pwj.presentation.model.Model;
+import pl.edu.pk.wieik.pwj.presentation.model.Presentation;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import pl.edu.pk.wieik.pwj.presentation.libs.ModelInt;
-import pl.edu.pk.wieik.pwj.presentation.model.Model;
-import pl.edu.pk.wieik.pwj.presentation.model.Presentation;
-import pl.edu.pk.wieik.pwj.presentation.model.Slide;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/presentations")
 public class PresentationsController extends HttpServlet {

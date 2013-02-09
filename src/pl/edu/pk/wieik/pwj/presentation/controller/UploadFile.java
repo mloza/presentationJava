@@ -1,18 +1,19 @@
 package pl.edu.pk.wieik.pwj.presentation.controller;
-import java.io.File;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
- 
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import pl.edu.pk.wieik.pwj.presentation.model.ImageSlide;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
  
 @WebServlet("/UploadFile")
 public class UploadFile extends HttpServlet {
@@ -68,12 +69,41 @@ public class UploadFile extends HttpServlet {
                     System.out.println(filePath);
                  
                     item.write(storeFile);
+
+                    String extension = item.getName().substring(item.getName().lastIndexOf('.') + 1);
+                    System.out.println(extension);
+                    for (ImageFileTypes type : ImageFileTypes.values()) {
+                        if (type.name().equals(extension)) {
+                            //zapis obrazka
+                            ImageSlide imgToAdd = ImageSlide.factory();
+                            imgToAdd.setDescription("");
+                            imgToAdd.setWidth(1);
+                            imgToAdd.setHeight(1);
+                            imgToAdd.setPath(filePath);
+                            imgToAdd.save();
+                            break;
+                        }
+                    }
+                    for (VideoFileTypes type : VideoFileTypes.values()) {
+                        if (type.name().equals(extension)) {
+                            //zapis filmu
+                            break;
+                        }
+                    }
                 }
             }
             request.setAttribute("message", "Upload has been done successfully!");
         } catch (Exception ex) {
             request.setAttribute("message", "There was an error: " + ex.getMessage());
         }
+
+
         getServletContext().getRequestDispatcher("/message.jsp").forward(request, response);
+    }
+    private enum ImageFileTypes{
+         jpg, gif, png, jpeg, bmp, jfif, tif, tiff;
+    }
+    private enum VideoFileTypes{
+         mpg, mpeg, avi, mov, qt, vob;
     }
 }
