@@ -75,6 +75,7 @@
     <div class="container_12">
     	<p></p>
 	    <form method="post" class="form" action="/presentation/addnews">
+	    	<span style="color:red;">${errorMsg}</span><br><br>
 	    	<fieldset>
 	        	<legend>Dodaj newsa</legend>
 	        	<p>
@@ -82,10 +83,7 @@
 	        	</p>
 	        	<p>
 			        <label for="fieldContent" class="required">Treść</label>
-			        <input type="text" name="content" id="fieldContent">
-
-	    			<label for="fieldDate" class="required">Data</label>
-			        <input type="text" name="date" id="fieldDate"><br>
+			        <input type="text" maxlength="255" name="content" id="fieldContent">
 			        
 			    </p>
 			    <p>

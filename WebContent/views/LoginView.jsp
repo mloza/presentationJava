@@ -62,16 +62,7 @@
                 <button type="submit" class="float-right">Login</button>
             </form>
             
-            <form class="form" id="password-recovery" method="post" action="">
-                <fieldset class="grey-bg no-margin collapse">
-                    <legend><a href="#">Lost password?</a></legend>
-                    <p class="input-with-button">
-                        <label for="recovery-mail">Enter your e-mail address</label>
-                        <input type="text" name="recovery-mail" id="recovery-mail" value="">
-                        <button type="button">Send</button>
-                    </p>
-                </fieldset>
-            </form>
+            <p>&nbsp;</p>&nbsp;
         </div></div>
     </section>
 

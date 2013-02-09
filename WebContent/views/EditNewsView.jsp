@@ -48,7 +48,7 @@
     <script type="text/javascript" src="/presentation/js/jquery.modal.js"></script>
     
     <!-- Custom styles lib -->
-    <script type="text/javascript" src="/presentation/js/list.js"></script>
+    <script type="text/javascript" src="js/list.js"></script>
     
     <!-- Plugins -->
     <script  type="text/javascript" src="/presentation/js/jquery.dataTables.min.js"></script>
@@ -74,54 +74,24 @@
     
     <div class="container_12">
     	<p></p>
-    	
-	    <table class="table" cellspacing="0" width="100%">
- 
-    <thead>
-        <tr>
-            <!-- This is a special cell for loading statuses - see below for more -->
-            <th class="black-cell"><span class="success"></span></th>
-             
-            <th scope="col">Pozycja</th>
-            <th scope="col">Treść</th>
-            <th scope="col">Data</th>
-            <th scope="col" class="table-actions">Akcje</th>
-        </tr>
-    </thead>
- 
-    <tfoot>
-        <tr>
-            <td colspan="4"><img src="images/icons/fugue/arrow-curve-000-left.png" width="16" height="16" class="picto"> <b>Znalezione rekordy:</b> ${news.size()} </td>
-            <td><a href="#" class="button"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"> delete all</a></td>
-        </tr>
-    </tfoot>
-     
-    <tbody>
-        
-        <c:forEach var="n" items="${news}" varStatus="status">
-        	<tr>
-	            <th scope="row" class="table-check-cell"></th>
-	            <td>${n.position}</td>
-	            <td>${n.content}</td>
-	            <td>${n.date}</td>
-	             
-	            <!-- The class table-actions is designed for action icons -->
-	            <td class="table-actions">
-	                <a href="<c:url value="/editnews?id=${n.id}"/>" title="Edytuj" class="with-tip"><img src="<c:url value="/images/icons/fugue/pencil.png"/>" width="16" height="16"></a>
-	                <a href="<c:url value="/deletenews?id=${n.id}"/>" title="Usuń" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
-	            	<c:if test="${not status.first}">
-	            		<a href="<c:url value="/switchnewsposition?id1=${n.id}&id2=${news.get(status.index-1).id}"/>" title="Przesuń do góry" class="with-tip"><img src="<c:url value="/images/icons/fugue/arrow-090.png"/>" width="16" height="16"></a>
-	            	</c:if>
-	            	<c:if test="${not status.last}">
-	            		<a href="<c:url value="/switchnewsposition?id1=${n.id}&id2=${news.get(status.index+1).id}"/>" title="Przesuń w dół" class="with-tip"><img src="<c:url value="/images/icons/fugue/arrow-270.png"/>" width="16" height="16"></a>
-	            	</c:if>
-	            </td>
-        	</tr>
-        </c:forEach>
-         
-    </tbody>
- 
-</table>
+	    <form method="post" class="form" action="/presentation/editnews">
+	    	<span style="color:red;">${errorMsg}</span><br><br>
+	    	<fieldset>
+	        	<legend>Edytuj newsa</legend>
+	        	<input type="hidden" name="id" value="${news.id}" />
+	        	<p>
+	        		<label for="field" class="required">Wymagane pola</label>
+	        	</p>
+	        	<p>
+			        <label for="fieldContent" class="required">Treść</label>
+			        <input type="text" maxlength="255" name="content" id="fieldContent" value="${news.content}">
+			        
+			    </p>
+			    <p>
+			        <input type="submit" value="Edytuj">
+			    </p>
+	    	</fieldset>
+	    </form>
     
     </div>
 </body>
