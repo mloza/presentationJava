@@ -59,22 +59,22 @@ public class MainController extends HttpServlet {
 //        p2.save();
         
 
-        PrintWriter out = response.getWriter();
-        News news = News.factory();
-        for(ModelInt i: news.getAll()) {
-            out.write(((News)i).getContent());
-        }
-
-        Presentation presentation = Presentation.factory();
-        for(ModelInt i: presentation.getAll()) {
-            out.write(((Presentation)i).getName());
-            for(Slide j: ((Presentation)i).getSlides()) {
-                out.write(j.getType().name());
-            }
-        }
-
-
-       news.remove();
+//        PrintWriter out = response.getWriter();
+//        News news = News.factory();
+//        for(ModelInt i: news.getAll()) {
+//            out.write(((News)i).getContent());
+//        }
+//
+//        Presentation presentation = Presentation.factory();
+//        for(ModelInt i: presentation.getAll()) {
+//            out.write(((Presentation)i).getName());
+//            for(Slide j: ((Presentation)i).getSlides()) {
+//                out.write(j.getType().name());
+//            }
+//        }
+//
+//
+//       news.remove();
      
 //    	news.setContent("to jest wiadmosoc");
 //    	news.setPosition(5);
@@ -89,8 +89,13 @@ public class MainController extends HttpServlet {
         } */
         
       
-        news.getAll();
+       // news.getAll();
         
+        
+        News n = News.factory();
+        n.setContent("trolololotrololo");
+    	n.setDate(new java.sql.Date(15));
+        n.save();
         //end tests
         //p.getSlides();
 

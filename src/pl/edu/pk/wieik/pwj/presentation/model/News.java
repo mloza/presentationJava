@@ -75,10 +75,12 @@ public class News extends Model<News> implements ModelInt {
 		
 		try {
 			String insert = "INSERT INTO news (content, data, position) values (?, ?, ?) ";
+			ResultSet maxPosition = DB.prepareStatement("SELECT max(position) from news").executeQuery();
+			maxPosition.first();
 			java.sql.PreparedStatement st = DB.prepareStatement(insert);
 			st.setString(1, this.getContent());
 			st.setDate(2, this.getDate());
-			st.setInt(3, this.getPosition());
+			st.setInt(3, maxPosition.getInt(1)+1);
 			st.execute();
 			
 		} catch (SQLException e) {
@@ -124,6 +126,7 @@ public class News extends Model<News> implements ModelInt {
         	
         	ResultSet prs = DB.prepareStatement("SELECT * FROM news ORDER By position ASC").executeQuery();
         	prs.first();
+             	
         	while(!prs.isAfterLast()){
         		News temp = News.factory();
         		int newsId = prs.getInt(1);
