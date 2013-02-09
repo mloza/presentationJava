@@ -19,6 +19,10 @@ public class VideoSlide extends SlideExtend {
     protected String format;
     protected String path;
 
+    public static VideoSlide factory(){
+        return new VideoSlide();
+    }
+
     public Integer getId() {
         return id;
     }

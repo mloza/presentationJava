@@ -4,6 +4,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import pl.edu.pk.wieik.pwj.presentation.model.ImageSlide;
+import pl.edu.pk.wieik.pwj.presentation.model.VideoSlide;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -76,7 +77,7 @@ public class UploadFile extends HttpServlet {
                         if (type.name().equals(extension)) {
                             //zapis obrazka
                             ImageSlide imgToAdd = ImageSlide.factory();
-                            imgToAdd.setDescription("");
+                            imgToAdd.setDescription("opis");
                             imgToAdd.setWidth(1);
                             imgToAdd.setHeight(1);
                             imgToAdd.setPath(filePath);
@@ -87,6 +88,13 @@ public class UploadFile extends HttpServlet {
                     for (VideoFileTypes type : VideoFileTypes.values()) {
                         if (type.name().equals(extension)) {
                             //zapis filmu
+                            VideoSlide vidToAdd = VideoSlide.factory();
+                            vidToAdd.setName(fileName);
+                            vidToAdd.setDescription("opis");
+                            vidToAdd.setFps(1);
+                            vidToAdd.setFormat(extension);
+                            vidToAdd.setPath(filePath);
+                            vidToAdd.save();
                             break;
                         }
                     }
