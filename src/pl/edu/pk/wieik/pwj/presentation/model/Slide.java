@@ -236,4 +236,32 @@ public class Slide extends Model<Slide> implements ModelInt {
         }
     }
     
+    
+    public void removeSlide(Integer presentationId){
+    	
+    	List<Slide> slideList = getAll(presentationId);
+    
+    	try {
+			DB.prepareStatement("DELETE FROM slide where id = "+this.getId()).execute();
+			ResultSet maxPos = DB.prepareStatement("SELECT max(position) from slide where presentation_id = " + presentationId).executeQuery();
+			maxPos.first();
+			
+			for(int i = this.getPosition();  i < maxPos.getInt(1); i++) {
+				DB.prepareStatement( "UPDATE slide SET position = "+(i)+" WHERE position = "+(i+1)).execute();
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	
+    	
+    }
+    
+    
+    
+    
 }

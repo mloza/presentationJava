@@ -92,10 +92,16 @@ public class MainController extends HttpServlet {
        // news.getAll();
         
         
-        News n = News.factory();
-        n.setContent("trolololotrololo");
-    	n.setDate(new java.sql.Date(15));
-        n.save();
+//        News n = News.factory();
+//        n.setContent("trolololotrololo");
+//    	n.setDate(new java.sql.Date(15));
+//        n.save();
+    	
+    	Slide sl = Slide.factory();
+    	sl = sl.getByPosition(1, 1);
+    	sl.removeSlide(1);
+    	
+    	
         //end tests
         //p.getSlides();
 

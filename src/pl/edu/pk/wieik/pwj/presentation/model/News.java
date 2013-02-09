@@ -104,11 +104,11 @@ public class News extends Model<News> implements ModelInt {
 		} 
 		
 	}
-	public void editPosition(Integer newsId, String newPosition){
+	public void editPosition(Integer newsId, Integer newPosition){
 		try{
 			String update = "UPDATE news SET position = ? WHERE id = ? ";
 			PreparedStatement st = DB.prepareStatement(update);
-			st.setString(1, newPosition);
+			st.setInt(1, newPosition);
 			st.setInt(2, newsId);
 			st.executeUpdate();
 			
