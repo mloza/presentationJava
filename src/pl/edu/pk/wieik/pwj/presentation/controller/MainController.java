@@ -76,7 +76,7 @@ public class MainController extends HttpServlet {
             }
         }
 
-       news.remove(2);
+       news.remove();
         
 //    	news.setContent("to jest wiadmosoc");
 //    	news.setPosition(5);

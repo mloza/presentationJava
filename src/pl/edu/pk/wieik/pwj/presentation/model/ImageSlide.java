@@ -1,8 +1,12 @@
 package pl.edu.pk.wieik.pwj.presentation.model;
 
+import java.io.FileInputStream;
+import java.net.MalformedURLException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.apache.tomcat.util.net.URL;
 
 /**
  * Created with IntelliJ IDEA.
@@ -140,5 +144,5 @@ public class ImageSlide extends SlideExtend {
             e.printStackTrace();
         }
     }
-
+    
 }
