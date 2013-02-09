@@ -98,7 +98,7 @@ public class MainController extends HttpServlet {
 //        n.save();
     	
     	Slide sl = Slide.factory();
-    	sl = sl.getByPosition(1, 1);
+    	sl = sl.getByPosition(1, 2);
     	sl.removeSlide(1);
     	
     	

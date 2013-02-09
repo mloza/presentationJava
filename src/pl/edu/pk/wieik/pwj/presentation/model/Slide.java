@@ -244,7 +244,7 @@ public class Slide extends Model<Slide> implements ModelInt {
     	try {
 			DB.prepareStatement("DELETE FROM slide where id = "+this.getId()).execute();
 			ResultSet maxPos = DB.prepareStatement("SELECT max(position) from slide where presentation_id = " + presentationId).executeQuery();
-			maxPos.first();
+			System.out.println(maxPos.first());
 			
 			for(int i = this.getPosition();  i < maxPos.getInt(1); i++) {
 				DB.prepareStatement( "UPDATE slide SET position = "+(i)+" WHERE position = "+(i+1)).execute();
