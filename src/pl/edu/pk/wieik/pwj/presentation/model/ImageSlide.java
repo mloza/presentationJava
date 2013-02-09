@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 /**
  * Created with IntelliJ IDEA.
  * User: scroot
@@ -16,6 +17,10 @@ public class ImageSlide extends SlideExtend {
     protected Integer width;
     protected Integer height;
     protected String path;
+
+    public static ImageSlide factory(){
+        return new ImageSlide();
+    }
 
     public Integer getId() {
         return id;
@@ -115,5 +120,5 @@ public class ImageSlide extends SlideExtend {
             e.printStackTrace();
         }
     }
-
+    
 }

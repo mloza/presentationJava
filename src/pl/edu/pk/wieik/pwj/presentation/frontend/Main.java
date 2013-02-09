@@ -1,10 +1,6 @@
 package pl.edu.pk.wieik.pwj.presentation.frontend;
 
-import com.sun.webpane.webkit.JSObject;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Worker;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Node;
@@ -16,8 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import pl.edu.pk.wieik.pwj.presentation.model.HtmlSlide;
 import pl.edu.pk.wieik.pwj.presentation.model.Slide;
 

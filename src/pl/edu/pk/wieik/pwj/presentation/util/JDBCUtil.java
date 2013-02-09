@@ -1,8 +1,8 @@
 package pl.edu.pk.wieik.pwj.presentation.util;
 
-import javax.sql.DataSource;
-
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
+import javax.sql.DataSource;
 
 public class JDBCUtil {
 	 
